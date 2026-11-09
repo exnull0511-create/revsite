@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rev | 業務効率化・AI自動化サービス</title>
+<meta name="description" content="LINE・スプレッドシート・生成AIを組み合わせて、毎日の手作業を勝手に回る仕組みに。着手金5万円・月額3万円の業務効率化サービス。">
+<meta property="og:title" content="Rev | その作業、明日から0分に。">
+<meta property="og:description" content="LINE・スプレッドシート・生成AIで、毎日の手作業を自動化。着手金5万円・月額3万円。">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#07090F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090F'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Arial' font-weight='700' font-size='34' fill='%237DD3FC'%3ER%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+:root{--accent:#7DD3FC;--bg:#07090F;--text:#EEF2F8;--muted:#9AA5B8;--sub:#B4BECE;--line:#141A28;--card:#0D1220;--cardline:#222B40}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;overflow-x:hidden}
+a{color:var(--accent)}
+.num{font-family:'Space Grotesk',sans-serif;font-weight:700}
+.wrap{max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px}
+.accent{color:var(--accent)}
+.gridbg{background-image:linear-gradient(#141A28 1px,transparent 1px),linear-gradient(90deg,#141A28 1px,transparent 1px);background-size:56px 56px}
+.btn{display:inline-block;background:var(--accent);color:#07090F;text-decoration:none;font-weight:700;border-radius:14px;padding:18px 28px;font-size:16px}
+.btn-ghost{display:inline-block;border:1px solid #2A3348;color:var(--text);text-decoration:none;font-weight:500;border-radius:14px;padding:18px 28px;font-size:16px;background:#0B0F19}
+.kicker{font-family:'Space Grotesk',sans-serif;font-size:14px;color:var(--accent);letter-spacing:.15em}
+h2{margin:0;font-size:clamp(30px,4.5vw,56px);line-height:1.2;font-weight:900;letter-spacing:-.02em}
+.dot{width:8px;height:8px;border-radius:999px;background:var(--accent);display:inline-block}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes rise{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.bar{flex:1;border-radius:6px 6px 2px 2px;transform-origin:bottom;animation:rise 1.2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes slidein{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.newlog{animation:slidein .5s ease-out both}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee{animation:marquee 28s linear infinite}
+@keyframes fadeup{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.fadeup{animation:fadeup .9s cubic-bezier(.2,.8,.2,1) both}
+.dash{position:relative;overflow:hidden;border:1px solid rgba(125,211,252,.28);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:20px;box-shadow:0 0 90px rgba(56,130,246,.35),inset 0 0 60px rgba(56,130,246,.12);background:radial-gradient(120% 80% at 75% 15%,rgba(56,130,246,.32),transparent 60%),radial-gradient(90% 60% at 0% 100%,rgba(125,211,252,.16),transparent 70%),#071026}
+.dash>*:not(svg){position:relative;z-index:1}
+.dash svg.bg{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+@keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
+.node{animation:twinkle 3.2s ease-in-out infinite;filter:drop-shadow(0 0 4px #7DD3FC)}
+.nodes circle:nth-child(3n){animation-delay:1.1s}
+.nodes circle:nth-child(3n+1){animation-delay:2.2s}
+.nodes circle:nth-child(4n){animation-duration:2.4s}
+@keyframes flow{to{stroke-dashoffset:-40}}
+.link{stroke-dasharray:3 7;animation:flow 6s linear infinite}
+@keyframes corepulse{0%,100%{opacity:.75}50%{opacity:1}}
+.corepulse{animation:corepulse 4s ease-in-out infinite}
+@keyframes glow{0%,100%{text-shadow:0 0 18px rgba(125,211,252,.45)}50%{text-shadow:0 0 34px rgba(125,211,252,.9)}}
+.glow{animation:glow 3s ease-in-out infinite}
+.glass{background:rgba(30,64,140,.32);border:1px solid rgba(125,211,252,.18);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.glass .lbl{font-size:11px;color:#A9C7E8}
+.glass .val{font-size:20px}
+.log{display:flex;align-items:center;gap:10px;font-size:13px;border-radius:10px;padding:10px 12px}
+.log.first{background:rgba(56,130,246,.25);border:1px solid rgba(125,211,252,.45);box-shadow:0 0 24px rgba(56,130,246,.35)}
+.log.rest{color:#C9D8EC;background:rgba(15,30,70,.45);border:1px solid rgba(125,211,252,.12)}
+.log .t{font-family:'Space Grotesk',sans-serif;font-size:12px}
+.log.first .t{color:var(--accent)}
+.log.rest .t{color:#8D98AC}
+.log .x{flex:1;min-width:0}
+.card{background:var(--card);border:1px solid #1E2638;border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.opt{min-height:48px;padding:0 20px;border-radius:12px;border:1px solid #2A3348;background:#121829;color:var(--text);font:inherit;font-weight:500;font-size:15px;cursor:pointer}
+.opt.on{border-color:var(--accent);background:var(--accent);color:#07090F;font-weight:700}
+.check{display:flex;gap:10px;align-items:center}
+.nav a.lnk{color:var(--sub);text-decoration:none}
+@media (max-width:640px){.nav a.lnk{display:none}.dash{padding:18px}.big{font-size:52px!important}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap nav" style="padding-top:20px;padding-bottom:20px;display:flex;justify-content:space-between;align-items:center;gap:16px">
+<div class="num" style="font-size:28px;letter-spacing:-.02em">Rev<span class="accent">.</span></div>
+<div style="display:flex;gap:24px;align-items:center;font-size:14px">
+<a class="lnk" href="#how">しくみ</a>
+<a class="lnk" href="#sim">効果試算</a>
+<a class="lnk" href="#price">料金</a>
+<a href="#contact" style="background:var(--accent);color:#07090F;text-decoration:none;font-weight:700;padding:12px 20px;border-radius:999px">無料相談</a>
+</div>
+</div>
+
+<section class="gridbg" style="border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+<div class="wrap" style="padding-top:80px;padding-bottom:88px;display:flex;flex-wrap:wrap;gap:56px;align-items:center">
+<div class="fadeup" style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:28px">
+<div style="display:inline-flex;align-self:flex-start;align-items:center;gap:10px;border:1px solid #2A3348;border-radius:999px;padding:8px 16px;font-size:13px;color:#C9D2E0;background:#0B0F19"><span class="dot pulse"></span>業務効率化・AI自動化サービス</div>
+<h1 style="margin:0;font-size:clamp(44px,7vw,92px);line-height:1.08;font-weight:900;letter-spacing:-.03em">その作業、<br>明日から<span class="accent">0分</span>に。</h1>
+<p style="margin:0;font-size:18px;line-height:1.8;color:var(--sub);max-width:520px">LINE・スプレッドシート・生成AIを組み合わせて、毎日の手作業を「勝手に回る仕組み」に変えます。作るのは、あなたの業務に本当に必要な分だけ。</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<a class="btn line-link" href="#contact">LINEで無料相談する</a>
+<a class="btn-ghost" href="#sim">削減効果を試算する →</a>
+</div>
+<div style="display:flex;gap:28px;flex-wrap:wrap;font-size:13px;color:var(--muted)">
+<div>着手金 <span class="num" style="color:var(--text);font-size:18px">¥50,000</span></div>
+<div>月額 <span class="num" style="color:var(--text);font-size:18px">¥30,000</span></div>
+<div>スマホで完結</div>
+</div>
+</div>
+
+<div class="fadeup dash" style="flex:1 1 400px;min-width:0">
+<svg class="bg" viewBox="0 0 400 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<defs>
+<radialGradient id="revcore" cx="52%" cy="48%" r="50%"><stop offset="0" stop-color="#E0F2FE" stop-opacity="0.6"/><stop offset="0.25" stop-color="#60A5FA" stop-opacity="0.28"/><stop offset="1" stop-color="#1E3A8A" stop-opacity="0"/></radialGradient>
+<filter id="revblur8" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
+<filter id="revblur3" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.5"/></filter>
+</defs>
+<g filter="url(#revblur8)" fill="#3B82F6">
+<circle cx="40" cy="80" r="22" opacity="0.35"/><circle cx="120" cy="40" r="14" opacity="0.4"/><circle cx="350" cy="60" r="26" opacity="0.3"/><circle cx="380" cy="200" r="16" opacity="0.35"/><circle cx="20" cy="260" r="18" opacity="0.3"/><circle cx="370" cy="330" r="24" opacity="0.28"/><circle cx="60" cy="430" r="26" opacity="0.32"/><circle cx="250" cy="520" r="20" opacity="0.3"/><circle cx="140" cy="500" r="12" opacity="0.45"/><circle cx="320" cy="470" r="14" opacity="0.4"/><circle cx="180" cy="20" r="10" opacity="0.45" fill="#93C5FD"/><circle cx="300" cy="420" r="9" opacity="0.5" fill="#93C5FD"/>
+</g>
+<ellipse class="corepulse" cx="210" cy="270" rx="190" ry="175" fill="url(#revcore)"/>
+<path class="link" d="M185 58L194 4M312 347L334 285M78 327L-9 425M273 158L179 165M206 259L78 327M21 144L49 189M273 158L206 259M259 34L228 -2M78 538L87 510M228 -2L185 58M362 397L379 403M299 136L365 105M191 386L272 391M-2 256L49 189M296 109L259 34M296 109L365 105M197 211L273 158M51 137L178 145M296 109L342 59M299 136L302 166M49 293L-8 275M299 136L368 158M299 136L296 109M302 166L206 259M78 327L49 293M273 158L178 145M296 109L178 145M300 555L334 551M299 136L273 158M302 166L334 285M185 58L178 145M296 109L273 158M365 105L390 66M87 510L-9 425M302 166L368 158M390 66L342 59M191 386L206 259M334 285L362 397M15 145L-2 256M191 386L122 477M334 285L379 403M179 165L49 189M178 145L179 165M296 109L185 58M266 28L228 -2M-2 256L49 293M51 137L49 189M228 -2L194 4M49 293L49 189M15 145L-8 275M78 538L-9 425M302 166L273 158M49 293L-9 425M312 347L362 397M400 533L379 403M21 144L15 145M272 391L362 397M400 533L334 551M266 28L259 34M87 510L122 477M-2 256L-8 275M197 211L179 165M266 28L342 59M228 -2L342 59M312 347L272 391M206 259L334 285M191 386L78 327M390 66L368 158M197 211L206 259M365 105L342 59M51 137L179 165M122 477L-9 425M312 347L206 259M334 285L368 158M266 28L296 109M78 538L122 477M259 34L185 58M15 145L49 189M21 144L51 137M365 105L368 158M272 391L206 259" stroke="#93C5FD" stroke-opacity="0.38" stroke-width="0.6" fill="none"/>
+<path id="coremesh" stroke="#BFDBFE" stroke-opacity="0.42" stroke-width="0.5" fill="none" d="M298 329L318 328M135 207L144 192M351 284L327 308M203 402L186 393M255 141L258 162M218 163L218 191M141 158L136 168M277 171L258 162M272 310L264 327M166 257L147 257M236 198L244 164M220 229L236 198M235 391L225 398M144 192L151 189M192 174L210 173M199 265L195 279M217 400L203 402M112 189L118 215M227 308L247 324M179 266L177 272M213 327L227 308M289 291L291 272M280 363L264 327M224 385L217 400M268 298L247 273M170 289L165 284M233 256L210 279M97 186L119 181M167 385L162 369M217 382L203 402M114 294L106 334M247 390L235 387M220 229L199 265M157 165L141 158M224 138L244 164M315 361L299 344M135 224L153 211M274 383L301 367M312 263L305 249M195 279L177 272M289 291L277 286M128 275L157 275M138 230L152 226M217 382L217 400M235 391L227 402M285 263L247 273M71 320L91 288M322 214L305 249M255 141L277 171M317 206L306 205M97 186L98 194M185 347L175 320M187 368L159 360M346 254L351 284M220 229L233 239M247 390L250 360M298 329L264 327M166 257L152 226M278 206L277 171M345 327L329 353M98 194L118 215M236 198L218 191M116 262L107 253M195 209L162 199M135 224L152 226M210 279L202 270M317 206L322 214M214 305L235 278M167 385L180 404M226 355L228 347M248 404L235 391M180 404L203 402M248 404L227 402M220 229L251 231M291 272L279 285M224 385L235 387M114 294L132 295M153 211L144 192M112 189L119 181M175 320L137 327M298 329L299 344M285 317L264 327M228 347L250 360M236 198L214 221M345 327L318 328M312 263L333 252M308 168L307 183M321 321L285 317M116 262L120 271M210 279L235 278M118 215L91 199M346 229L351 238M202 319L170 289M307 183L305 197M307 183L287 206M264 248L266 247M167 385L186 395M289 291L277 312M126 188L119 181M114 294L128 275M298 329L285 317M71 320L91 310M153 211L152 226M66 258L84 254M322 214L333 252M158 186L151 189M169 156L192 174M196 221L181 224M322 359L305 341M122 168L126 188M269 382L274 383M289 291L321 321M250 360L235 387M166 257L157 275M157 275L147 257M136 168L144 192M153 211L151 189M108 249L116 262M289 291L268 298M169 156L158 186M185 347L208 370M135 224L108 249M243 271L235 278M264 327L247 324M85 318L106 334M255 141L244 164M214 221L196 221M98 194L91 199M177 381L190 381M187 368L185 347M143 244L166 257M105 266L96 252M277 312L264 327M250 360L247 324M180 404L186 395M165 284L157 275M251 231L278 206M177 239L152 226M71 320L78 330M175 320L170 289M185 347L213 327M214 305L195 279M190 381L203 402M308 168L277 171M137 327L106 334M220 229L226 252M322 359L315 361M220 229L196 221M218 191L210 173M154 295L137 327M224 385L226 355M233 239L233 256M226 252L202 270M248 404L247 390M217 382L224 385M84 254L86 239M84 254L101 277M195 209L176 217M91 310L91 288M187 368L208 370M181 224L176 217M97 186L91 199M135 224L135 207M210 279L195 279M333 252L351 284M85 318L81 320M84 254L96 252M114 294L133 292M185 347L159 360M159 360L162 369M126 188L144 192M152 364L113 356M217 382L211 370M244 164L258 162M280 363L299 344M346 254L333 252M351 238L333 252M305 341L299 344M247 390L255 359M251 231L264 248M135 224L138 230M248 404L274 383M177 381L167 385M255 141L224 138M77 272L66 258M199 265L179 266M235 391L235 387M137 327L132 295M157 165L151 189M154 295L170 289M233 239L251 231M195 279L210 280M277 286L279 285M218 163L210 173M315 361L305 341M122 168L140 158M202 319L195 279M272 310L247 324M130 265L137 245M226 355L211 370M318 328L321 321M152 364L137 327M264 248L233 256M199 265L226 252M228 347L247 324M199 265L196 221M278 206L266 247M217 400L225 398M111 262L107 253M138 230L137 245M128 275L120 271M134 203L118 215M219 353L226 355M268 298L272 310M122 168L136 168M186 395L186 393M301 367L299 344M268 298L247 324M315 361L301 367M105 266L84 254M217 382L208 370M255 359L269 382M285 263L305 249M195 279L179 266M157 165L136 168M289 291L312 263M351 314L327 308M333 252L305 249M251 231L266 247M177 381L186 393M111 262L120 271M214 305L227 308M317 206L308 168M280 363L301 367M143 244L147 257M118 215L99 228M187 368L190 381M272 310L277 312M219 353L228 347M166 257L177 272M152 364L167 385M268 298L235 278M90 229L91 199M233 256L226 252M158 186L192 174M244 164L218 163M306 205L305 197M306 205L287 206M217 400L227 402M77 272L84 254M321 321L327 308M71 320L81 320M154 295L133 292M169 156L141 158M277 286L247 273M298 329L305 341M105 266L101 277M91 199L99 228M248 404L269 382M185 347L219 353M233 256L243 271M112 189L126 188M165 284L177 272M233 239L226 252M130 265L120 271M266 247L305 249M192 174L218 191M135 207L134 203M137 327L159 360M113 356L103 367M231 330L247 324M177 239L199 265M269 382L280 363M195 209L192 174M177 381L162 369M105 266L107 253M137 245L147 257M97 186L122 168M162 199L151 189M235 278L227 308M96 252L108 249M170 289L195 279M153 211L176 217M130 265L147 257M71 320L85 318M224 138L218 163M274 383L280 363M187 368L177 381M169 156L140 158M227 402L225 398M264 248L247 273M318 328L305 341M136 168L151 189M166 257L179 266M141 158L140 158M162 199L176 217M224 385L211 370M228 347L231 330M285 263L266 247M312 263L291 272M285 263L279 285M255 359L264 327M143 244L137 245M202 319L175 320M210 279L210 280M218 163L192 174M154 295L132 295M346 229L333 252M137 245L116 262M185 347L202 319M154 295L157 275M97 186L112 189M120 271L101 277M277 171L307 183M91 310L106 334M278 206L236 198M298 329L321 321M177 239L176 217M217 382L190 381M291 272L305 249M130 265L116 262M285 317L277 312M114 294L91 288M175 320L159 360M214 305L213 327M108 249L99 228M214 221L218 191M255 359L280 363M105 266L111 262M152 364L162 369M202 319L214 305M133 292L132 295M247 390L235 391M133 292L157 275M226 355L250 360M110 351L103 367M235 278L210 280M78 330L106 334M251 231L236 198M228 347L213 327M236 198L258 162M177 381L186 395M190 381L208 370M264 248L243 271M133 292L128 275M345 327L327 308M195 209L181 224M289 291L285 317M157 275L177 272M268 298L277 286M224 385L225 398M157 165L169 156M247 273L235 278M157 165L158 186M251 231L233 256M110 351L113 356M71 250L66 258M243 271L247 273M305 197L287 206M71 250L90 229M285 263L291 272M110 351L106 334M108 249L107 253M135 224L118 215M210 279L226 252M208 370L211 370M220 229L214 221M255 359L247 324M244 164L218 191M77 272L91 288M195 209L196 221M154 295L165 284M177 239L179 266M289 291L327 308M114 294L91 310M177 239L181 224M247 390L269 382M134 203L144 192M114 294L137 327M78 330L81 320M322 214L346 229M329 353L322 359M285 263L277 286M219 353L211 370M255 359L250 360M329 353L305 341M114 294L101 277M213 327L231 330M199 265L202 270M224 385L235 391M122 168L119 181M137 245L108 249M91 310L85 318M202 319L213 327M162 199L153 211M177 239L196 221M110 351L137 327M130 265L157 275M187 368L162 369M126 188L136 168M90 229L99 228M264 327L299 344M190 381L186 393M345 327L321 321M152 226L176 217M130 265L128 275M138 230L108 249M78 330L85 318M91 288L101 277M268 298L277 312M317 206L305 197M268 298L227 308M71 250L84 254M306 205L305 249M170 289L177 272M90 229L86 239M96 252L99 228M114 294L120 271M143 244L138 230M154 295L175 320M312 263L351 284M346 254L351 238M264 248L285 263M195 279L202 270M162 199L192 174M177 239L166 257M289 291L279 285M195 209L218 191M78 330L110 351M77 272L101 277M186 395L203 402M86 239L99 228M98 194L112 189M277 171L287 206M219 353L208 370M112 189L134 203M96 252L86 239M108 249L118 215M233 256L235 278M329 353L318 328M278 206L287 206M111 262L116 262M162 199L158 186M135 207L153 211M203 402L227 402M214 305L210 280M71 250L86 239M317 206L346 229M105 266L120 271M195 209L214 221M143 244L152 226M140 158L136 168M317 206L307 183M126 188L134 203M219 353L213 327M322 214L346 229M226 355L235 387M96 252L107 253M152 364L159 360M351 314L351 284M137 327L113 356M345 327L351 314M135 207L118 215M231 330L227 308"/>
+<g fill="#7DD3FC" opacity="0.6" filter="url(#revblur3)">
+<circle cx="266" cy="28" r="5"/><circle cx="299" cy="136" r="5"/><circle cx="21" cy="144" r="5"/><circle cx="296" cy="109" r="5"/><circle cx="197" cy="211" r="5"/><circle cx="191" cy="386" r="5"/><circle cx="312" cy="347" r="5"/><circle cx="51" cy="137" r="5"/><circle cx="302" cy="166" r="5"/><circle cx="272" cy="391" r="5"/><circle cx="273" cy="158" r="5"/><circle cx="206" cy="259" r="7"/><circle cx="185" cy="58" r="5"/><circle cx="365" cy="105" r="5"/><circle cx="178" cy="145" r="5"/><circle cx="78" cy="327" r="5"/><circle cx="49" cy="293" r="5"/><circle cx="390" cy="66" r="5"/><circle cx="334" cy="285" r="5"/><circle cx="362" cy="397" r="5"/><circle cx="87" cy="510" r="5"/><circle cx="179" cy="165" r="5"/><circle cx="49" cy="189" r="5"/><circle cx="122" cy="477" r="5"/><circle cx="342" cy="59" r="5"/><circle cx="379" cy="403" r="5"/><circle cx="368" cy="158" r="5"/><circle cx="334" cy="551" r="5"/><circle cx="78" cy="538" r="5"/>
+</g>
+<g class="nodes" fill="#F0F9FF">
+<circle class="node" cx="266" cy="28" r="1.8"/><circle class="node" cx="299" cy="136" r="1.8"/><circle class="node" cx="21" cy="144" r="1.8"/><circle class="node" cx="296" cy="109" r="1.8"/><circle class="node" cx="197" cy="211" r="2.2"/><circle class="node" cx="191" cy="386" r="2"/><circle class="node" cx="312" cy="347" r="1.8"/><circle class="node" cx="51" cy="137" r="1.8"/><circle class="node" cx="302" cy="166" r="1.8"/><circle class="node" cx="272" cy="391" r="1.8"/><circle class="node" cx="273" cy="158" r="2"/><circle class="node" cx="206" cy="259" r="3"/><circle class="node" cx="185" cy="58" r="1.8"/><circle class="node" cx="365" cy="105" r="1.8"/><circle class="node" cx="178" cy="145" r="1.8"/><circle class="node" cx="78" cy="327" r="2"/><circle class="node" cx="49" cy="293" r="1.8"/><circle class="node" cx="390" cy="66" r="1.8"/><circle class="node" cx="334" cy="285" r="2"/><circle class="node" cx="362" cy="397" r="1.8"/><circle class="node" cx="87" cy="510" r="1.8"/><circle class="node" cx="179" cy="165" r="1.8"/><circle class="node" cx="49" cy="189" r="1.8"/><circle class="node" cx="122" cy="477" r="2"/><circle class="node" cx="342" cy="59" r="1.8"/><circle class="node" cx="379" cy="403" r="1.8"/><circle class="node" cx="368" cy="158" r="1.8"/><circle class="node" cx="334" cy="551" r="1.8"/><circle class="node" cx="78" cy="538" r="1.8"/><circle class="node" cx="236" cy="198" r="1.4"/><circle class="node" cx="264" cy="327" r="1.4"/><circle class="node" cx="152" cy="226" r="1.4"/><circle class="node" cx="247" cy="273" r="1.4"/><circle class="node" cx="185" cy="347" r="1.4"/><circle class="node" cx="305" cy="249" r="1.4"/>
+</g>
+</svg>
+
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+<div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#C9D2E0"><span class="dot pulse"></span>Rev ダッシュボード · LIVE</div>
+<div style="font-size:11px;color:#A9C7E8;border:1px solid rgba(125,211,252,.3);border-radius:6px;padding:4px 8px">デモ表示</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px">
+<div style="font-size:13px;color:#A9C7E8">今月の削減時間</div>
+<div class="num glow big" style="font-size:64px;line-height:1;letter-spacing:-.03em;color:#E0F2FE"><span id="hours">128.4</span><span style="font-size:28px;color:#A9C7E8"> h</span></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+<div class="glass"><div class="lbl">自動処理</div><div class="num val"><span id="tasks">2,431</span><span style="font-size:12px;color:#A9C7E8"> 件</span></div></div>
+<div class="glass"><div class="lbl">人件費換算</div><div class="num val accent">¥<span id="yen">192,600</span></div></div>
+<div class="glass"><div class="lbl">入力ミス</div><div class="num val">0<span style="font-size:12px;color:#A9C7E8"> 件</span></div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between;font-size:11px;color:#A9C7E8"><span>週ごとの削減時間</span><span>W1 → W7</span></div>
+<div style="height:88px;display:flex;align-items:flex-end;gap:8px">
+<div class="bar" style="height:22%;background:rgba(125,211,252,.22);animation-delay:.1s"></div>
+<div class="bar" style="height:34%;background:rgba(125,211,252,.28);animation-delay:.2s"></div>
+<div class="bar" style="height:41%;background:rgba(125,211,252,.34);animation-delay:.3s"></div>
+<div class="bar" style="height:55%;background:rgba(125,211,252,.42);animation-delay:.4s"></div>
+<div class="bar" style="height:68%;background:rgba(125,211,252,.5);animation-delay:.5s"></div>
+<div class="bar" style="height:82%;background:rgba(125,211,252,.6);animation-delay:.6s"></div>
+<div class="bar" style="height:100%;background:var(--accent);box-shadow:0 0 20px var(--accent);animation-delay:.7s"></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(125,211,252,.18);padding-top:16px">
+<div style="font-size:11px;color:#A9C7E8">自動処理ログ</div>
+<div id="logs" style="display:flex;flex-direction:column;gap:8px"></div>
+</div>
+</div>
+</div>
+</section>
+
+<div style="border-bottom:1px solid var(--line);padding:22px 0;overflow:hidden">
+<div class="marquee" style="display:flex;gap:48px;width:max-content;font-size:22px;font-weight:700;color:#4A556C;white-space:nowrap">
+<span>予約管理</span><span class="accent">／</span><span>請求書の自動作成</span><span class="accent">／</span><span>日報の集計</span><span class="accent">／</span><span>在庫アラート</span><span class="accent">／</span><span>問い合わせ返信の下書き</span><span class="accent">／</span><span>シフト表づくり</span><span class="accent">／</span><span>顧客台帳の整理</span><span class="accent">／</span>
+<span>予約管理</span><span class="accent">／</span><span>請求書の自動作成</span><span class="accent">／</span><span>日報の集計</span><span class="accent">／</span><span>在庫アラート</span><span class="accent">／</span><span>問い合わせ返信の下書き</span><span class="accent">／</span><span>シフト表づくり</span><span class="accent">／</span><span>顧客台帳の整理</span><span class="accent">／</span>
+</div>
+</div>
+
+<section class="wrap" style="padding-top:110px;padding-bottom:40px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div class="kicker">PROBLEM</div>
+<h2>1日30分の手作業は、<br>3年で<span class="accent">396時間</span>になる。</h2>
+<p style="margin:0;font-size:15px;color:var(--muted)">30分 × 月22日 × 36ヶ月で計算</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+<div class="card"><div class="num" style="font-size:40px;color:#2A3348">01</div><div style="font-size:19px;font-weight:700">同じ内容を何度も入力している</div><div style="font-size:14px;line-height:1.7;color:var(--muted)">LINEで受けた予約を手帳に書き、Excelにも打ち直す。</div></div>
+<div class="card"><div class="num" style="font-size:40px;color:#2A3348">02</div><div style="font-size:19px;font-weight:700">月末の書類づくりで半日消える</div><div style="font-size:14px;line-height:1.7;color:var(--muted)">請求書、報告書、集計表。毎月同じ形なのに毎回手作業。</div></div>
+<div class="card"><div class="num" style="font-size:40px;color:#2A3348">03</div><div style="font-size:19px;font-weight:700">外出先から状況がわからない</div><div style="font-size:14px;line-height:1.7;color:var(--muted)">確認するために事務所へ戻る、電話で聞く、の繰り返し。</div></div>
+</div>
+</section>
+
+<section id="how" class="wrap" style="padding-top:90px;padding-bottom:90px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div class="kicker">HOW IT WORKS</div>
+<h2>作る前に、まず<span class="accent">数える</span>。</h2>
+<p style="margin:0;font-size:16px;line-height:1.8;color:var(--sub);max-width:640px">どこを自動化すれば一番時間が浮くのか。感覚ではなく数字で決めて、導入後も同じ物差しで効果を測り続けます。</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<div style="flex:1 1 280px;min-width:0;border-top:2px solid var(--accent);padding-top:24px;display:flex;flex-direction:column;gap:12px"><div class="num accent" style="font-size:14px;font-weight:500">STEP 01</div><div style="font-size:22px;font-weight:700">ヒアリングで時間を計測</div><div style="font-size:14px;line-height:1.8;color:var(--muted)">60〜90分のヒアリングで業務を棚卸し。どの作業に毎月何時間かかっているかを数字にします。</div></div>
+<div style="flex:1 1 280px;min-width:0;border-top:2px solid #2A3348;padding-top:24px;display:flex;flex-direction:column;gap:12px"><div class="num" style="font-size:14px;font-weight:500;color:var(--muted)">STEP 02</div><div style="font-size:22px;font-weight:700">一番効く1業務を自動化</div><div style="font-size:14px;line-height:1.8;color:var(--muted)">削減効果の試算つきで提案し、いま使っているツールの組み合わせで最短構築。新しいソフトの導入は最小限です。</div></div>
+<div style="flex:1 1 280px;min-width:0;border-top:2px solid #2A3348;padding-top:24px;display:flex;flex-direction:column;gap:12px"><div class="num" style="font-size:14px;font-weight:500;color:var(--muted)">STEP 03</div><div style="font-size:22px;font-weight:700">毎月、数字で報告</div><div style="font-size:14px;line-height:1.8;color:var(--muted)">月次レポートで削減時間を見える化。保守と小さな改善を続けて、仕組みを育てます。</div></div>
+</div>
+</section>
+
+<section id="sim" class="wrap" style="padding-top:40px;padding-bottom:90px">
+<div style="background:var(--card);border:1px solid var(--cardline);border-radius:28px;padding:clamp(24px,4vw,56px);display:flex;flex-wrap:wrap;gap:48px">
+<div style="flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<div class="kicker">SIMULATOR</div>
+<h2 style="font-size:clamp(28px,3.5vw,44px);line-height:1.25">いくら浮くか、<br>その場で計算。</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="font-size:14px;color:var(--sub)">自動化したい作業の時間（1日あたり）</div>
+<div id="mins" style="display:flex;gap:8px;flex-wrap:wrap">
+<button type="button" class="opt" data-v="15">15分</button><button type="button" class="opt on" data-v="30">30分</button><button type="button" class="opt" data-v="60">60分</button><button type="button" class="opt" data-v="120">120分</button>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="font-size:14px;color:var(--sub)">担当者の時給</div>
+<div id="wage" style="display:flex;gap:8px;flex-wrap:wrap">
+<button type="button" class="opt" data-v="1200">¥1,200</button><button type="button" class="opt on" data-v="1500">¥1,500</button><button type="button" class="opt" data-v="2000">¥2,000</button>
+</div>
+</div>
+<div style="font-size:12px;color:#8D98AC">月22日稼働で計算した目安です。</div>
+</div>
+<div style="flex:1 1 320px;min-width:0;background:var(--bg);border:1px solid var(--cardline);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:24px;justify-content:center">
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="font-size:13px;color:var(--muted)">毎月浮く人件費</div>
+<div class="num accent" style="font-size:clamp(44px,5vw,64px);line-height:1;letter-spacing:-.03em">¥<span id="simMonth"></span></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+<div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:12px;color:var(--muted)">年間で浮く時間</div><div class="num" style="font-size:26px"><span id="simHours"></span> h</div></div>
+<div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:12px;color:var(--muted)">年間の人件費</div><div class="num" style="font-size:26px">¥<span id="simYear"></span></div></div>
+</div>
+<div id="simPlus" style="background:rgba(56,130,246,.18);border:1px solid rgba(125,211,252,.4);border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.6">月額3万円を払っても、毎月 <span class="num accent">¥<span id="simNet"></span></span> のプラス。</div>
+<div id="simMinus" style="display:none;background:#121829;border:1px solid #2A3348;border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.6;color:#C9D2E0">複数の作業をまとめて自動化すると、月額以上の効果が見込めます。</div>
+</div>
+</div>
+</section>
+
+<section id="price" class="wrap" style="padding-top:40px;padding-bottom:90px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div class="kicker">PRICE</div>
+<h2>料金は、ふたつだけ。</h2>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:16px">
+<div style="flex:1 1 320px;min-width:0;background:var(--card);border:1px solid var(--cardline);border-radius:24px;padding:36px;display:flex;flex-direction:column;gap:20px">
+<div style="font-size:15px;color:var(--sub)">初期構築</div>
+<div class="num" style="font-size:clamp(44px,5vw,56px);line-height:1;letter-spacing:-.03em">¥50,000<span style="font-size:16px;color:var(--muted);font-family:'Noto Sans JP',sans-serif;font-weight:400"> 税別</span></div>
+<div style="display:flex;flex-direction:column;gap:12px;font-size:15px">
+<div class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>ヒアリングと業務の棚卸し</div>
+<div class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>削減効果の試算つき改善提案</div>
+<div class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>1業務の自動化構築</div>
+<div class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>操作説明とマニュアル</div>
+</div>
+</div>
+<div style="flex:1 1 320px;min-width:0;background:var(--accent);color:#07090F;border-radius:24px;padding:36px;display:flex;flex-direction:column;gap:20px">
+<div style="font-size:15px;font-weight:700">保守・改善（月額）</div>
+<div class="num" style="font-size:clamp(44px,5vw,56px);line-height:1;letter-spacing:-.03em">¥30,000<span style="font-size:16px;font-family:'Noto Sans JP',sans-serif;font-weight:400"> /月 税別</span></div>
+<div style="display:flex;flex-direction:column;gap:12px;font-size:15px">
+<div class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>不具合対応・保守</div>
+<div class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>小さな改善 月3時間まで</div>
+<div class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>LINE相談 平日9:00〜17:00</div>
+<div class="check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#07090F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>削減時間の月次レポート</div>
+</div>
+<div style="font-size:13px">最低契約期間3ヶ月</div>
+</div>
+</div>
+</section>
+
+<section id="contact" class="gridbg" style="border-top:1px solid var(--line)">
+<div class="wrap" style="padding-top:110px;padding-bottom:110px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px">
+<h2 style="font-size:clamp(30px,5vw,64px)">まずは、時間を食っている<br>作業を<span class="accent">ひとつ</span>教えてください。</h2>
+<p style="margin:0;font-size:16px;color:var(--sub)">ご相談・お見積りは無料です。</p>
+<a class="btn line-link" href="#contact" style="font-size:18px;padding:20px 36px;border-radius:16px">LINEで無料相談する</a>
+<div id="lineQR" style="font-size:13px;color:#8D98AC">[LINE ID / QRコード]</div>
+</div>
+</section>
+
+<footer style="border-top:1px solid var(--line)">
+<div class="wrap" style="padding-top:32px;padding-bottom:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted)">
+<div class="num" style="font-size:20px;color:var(--text)">Rev<span class="accent">.</span></div>
+<div>Rev ／ 代表 根本 涼太 ／ 福島県郡山市</div>
+</div>
+</footer>
+
+<script>
+(function(){
+  var LINE_URL = ''; // LINEの友だち追加URLを入れると、相談ボタンの飛び先になります
+  if (LINE_URL) {
+    document.querySelectorAll('.line-link').forEach(function(a){ a.href = LINE_URL; a.target = '_blank'; a.rel = 'noopener'; });
+  }
+  var fmt = function(n){ return n.toLocaleString('ja-JP'); };
+
+  // ダッシュボード（デモ）
+  var tick = 0, tenths = 1284, tasks = 2431;
+  var texts = ['LINE予約 → 顧客台帳へ自動登録','日報フォーム → 週次レポートを自動作成','請求書PDFを作成してメール送信','在庫が残り5個 → 担当者へLINE通知','問い合わせ → AIが返信文を下書き','シフト希望 → シフト表へ自動反映'];
+  var check = function(c){ return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>'; };
+  var logsEl = document.getElementById('logs');
+  function renderDash(){
+    var hours = tenths / 10;
+    document.getElementById('hours').textContent = hours.toFixed(1);
+    document.getElementById('tasks').textContent = fmt(tasks);
+    document.getElementById('yen').textContent = fmt(Math.round(hours * 1500));
+    var html = '';
+    for (var k = 0; k < 4; k++) {
+      var n = tick - k + 100, m = 9 * 60 + 12 + n * 3;
+      var time = String(Math.floor(m / 60) % 24).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+      var first = k === 0;
+      html += '<div class="log ' + (first ? 'first newlog' : 'rest') + '"><span class="t">' + time + '</span><span class="x">' + texts[n % texts.length] + '</span>' + check(first ? '#7DD3FC' : '#6B7690') + '</div>';
+    }
+    logsEl.innerHTML = html;
+  }
+  renderDash();
+  setInterval(function(){ tick++; tenths++; tasks += 1 + (tick % 3); renderDash(); }, 1800);
+
+  // シミュレーター
+  var mins = 30, wage = 1500;
+  function renderSim(){
+    var month = Math.round(mins / 60 * 22 * wage);
+    var net = month - 30000;
+    document.getElementById('simMonth').textContent = fmt(month);
+    document.getElementById('simHours').textContent = fmt(Math.round(mins / 60 * 22 * 12));
+    document.getElementById('simYear').textContent = fmt(month * 12);
+    document.getElementById('simNet').textContent = fmt(net);
+    document.getElementById('simPlus').style.display = net > 0 ? '' : 'none';
+    document.getElementById('simMinus').style.display = net > 0 ? 'none' : '';
+  }
+  function bind(id, set){
+    var box = document.getElementById(id);
+    box.addEventListener('click', function(e){
+      var b = e.target.closest('button'); if (!b) return;
+      box.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x === b); });
+      set(Number(b.dataset.v)); renderSim();
+    });
+  }
+  bind('mins', function(v){ mins = v; });
+  bind('wage', function(v){ wage = v; });
+  renderSim();
+})();
+</script>
+</body>
+</html>
